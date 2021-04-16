@@ -1,0 +1,55 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZCA_GW_ATTACHMENT_SRV" xml:lang="en" sap:schema-version="1">
+			<EntityType Name="AttachKey" sap:content-version="1">
+				<Key><PropertyRef Name="InstanceID"/><PropertyRef Name="TypeID"/><PropertyRef Name="CategoryID"/></Key><Property Name="InstanceID" Type="Edm.String" Nullable="false" MaxLength="70" sap:unicode="false" sap:label="Instance ID"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="TypeID" Type="Edm.String" Nullable="false" MaxLength="32" sap:unicode="false" sap:label="Object Type" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CategoryID" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Object Category"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><NavigationProperty Name="CommentSet" Relationship="ZCA_GW_ATTACHMENT_SRV.ToComment" FromRole="FromRole_ToComment" ToRole="ToRole_ToComment"/><NavigationProperty Name="AttachmentSet" Relationship="ZCA_GW_ATTACHMENT_SRV.ToAttachment" FromRole="FromRole_ToAttachment"
+					ToRole="ToRole_ToAttachment"/></EntityType>
+			<EntityType Name="Attachment" m:HasStream="true" sap:content-version="1">
+				<Key><PropertyRef Name="InstanceID"/><PropertyRef Name="Id"/><PropertyRef Name="TypeID"/><PropertyRef Name="CategoryID"/></Key><Property Name="InstanceID" Type="Edm.String" Nullable="false" MaxLength="70" sap:unicode="false" sap:label="Instance ID"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="70" sap:unicode="false" sap:label="Document ID" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CreatedBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Created By"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CreatedByName" Type="Edm.String" Nullable="false" MaxLength="80" sap:unicode="false" sap:label="Created By Name"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CreatedAt" Type="Edm.DateTime" Precision="0" sap:unicode="false" sap:label="Created At" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="MimeType" Type="Edm.String" Nullable="false" MaxLength="128" sap:unicode="false" sap:label="MIME Type" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="FileSize" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="File Size" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="FileName" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="File Name" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="TypeID" Type="Edm.String" Nullable="false" MaxLength="32" sap:unicode="false" sap:label="Object Type" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CategoryID" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Object Category"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="Comment" sap:content-version="1">
+				<Key><PropertyRef Name="InstanceID"/><PropertyRef Name="Id"/><PropertyRef Name="TypeID"/><PropertyRef Name="CategoryID"/></Key><Property Name="InstanceID" Type="Edm.String" Nullable="false" MaxLength="70" sap:unicode="false" sap:label="Instance ID"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="70" sap:unicode="false" sap:label="Document ID" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CreatedBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Created BY"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CreatedByName" Type="Edm.String" Nullable="false" MaxLength="80" sap:unicode="false" sap:label="Created By Name"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CreatedAt" Type="Edm.DateTime" Precision="0" sap:unicode="false" sap:label="Created At" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Note" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Comment" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="TypeID" Type="Edm.String" Nullable="false" MaxLength="32" sap:unicode="false" sap:label="Object Type" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CategoryID" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Object Category"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<Association Name="ToComment" sap:content-version="1"><End Type="ZCA_GW_ATTACHMENT_SRV.AttachKey" Multiplicity="1" Role="FromRole_ToComment"/><End Type="ZCA_GW_ATTACHMENT_SRV.Comment" Multiplicity="*" Role="ToRole_ToComment"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_ToComment"><PropertyRef Name="CategoryID"/><PropertyRef Name="TypeID"/><PropertyRef Name="InstanceID"/></Principal>
+					<Dependent Role="ToRole_ToComment"><PropertyRef Name="CategoryID"/><PropertyRef Name="TypeID"/><PropertyRef Name="InstanceID"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="ToAttachment" sap:content-version="1"><End Type="ZCA_GW_ATTACHMENT_SRV.AttachKey" Multiplicity="1" Role="FromRole_ToAttachment"/><End Type="ZCA_GW_ATTACHMENT_SRV.Attachment" Multiplicity="*" Role="ToRole_ToAttachment"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_ToAttachment"><PropertyRef Name="CategoryID"/><PropertyRef Name="TypeID"/><PropertyRef Name="InstanceID"/></Principal>
+					<Dependent Role="ToRole_ToAttachment"><PropertyRef Name="CategoryID"/><PropertyRef Name="TypeID"/><PropertyRef Name="InstanceID"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<EntityContainer Name="ZCA_GW_ATTACHMENT_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="AttachKeySet" EntityType="ZCA_GW_ATTACHMENT_SRV.AttachKey" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="AttachmentSet" EntityType="ZCA_GW_ATTACHMENT_SRV.Attachment" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="CommentSet" EntityType="ZCA_GW_ATTACHMENT_SRV.Comment" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:content-version="1"/>
+				<AssociationSet Name="ToCommentSet" Association="ZCA_GW_ATTACHMENT_SRV.ToComment" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:content-version="1"><End EntitySet="AttachKeySet" Role="FromRole_ToComment"/><End EntitySet="CommentSet" Role="ToRole_ToComment"/></AssociationSet>
+				<AssociationSet Name="ToAttachmentSet" Association="ZCA_GW_ATTACHMENT_SRV.ToAttachment" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:content-version="1"><End EntitySet="AttachKeySet" Role="FromRole_ToAttachment"/><End EntitySet="AttachmentSet" Role="ToRole_ToAttachment"/></AssociationSet>
+			</EntityContainer><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZCA_GW_ATTACHMENT_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZCA_GW_ATTACHMENT_SRV/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

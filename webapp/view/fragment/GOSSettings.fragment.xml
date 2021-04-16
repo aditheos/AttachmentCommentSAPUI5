@@ -1,0 +1,55 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Dialog
+		title="Generic Object Services Settings"
+		class="sapUiPopupWithPadding"
+		id="gosSettings"
+		horizontalScrolling="false">
+		<content>
+			<form:Form editable="true">
+				<form:formContainers>
+					<form:FormContainer>
+						<form:FormElement label="GOS Instance Key">
+							<Input id="gosInstanceIDInput" 
+								         showValueHelp="false"
+								         value="{gosObject>/InstanceID}"
+								         required="true"/>
+						</form:FormElement>
+						<form:FormElement label="GOS Type ID">
+							<Input id="gosTypeIDInput" 
+								         showValueHelp="false"
+								         value="{gosObject>/TypeID}"
+								         required="true"/>
+						</form:FormElement>
+						<form:FormElement label="GOS Category ID">
+							<Input id="gosCategoryIDInput" 
+								         showValueHelp="false"
+								         value="{gosObject>/CategoryID}"
+								         required="true"/>
+						</form:FormElement>
+					</form:FormContainer>
+				</form:formContainers>
+				<form:layout>
+					<form:ResponsiveGridLayout
+						labelSpanXL="3"
+						labelSpanL="3"
+						labelSpanM="4"
+						labelSpanS="12"
+						adjustLabelSpan="false"
+						emptySpanXL="0"
+						emptySpanL="0"
+						emptySpanM="0"
+						emptySpanS="0"
+						columnsXL="1"
+						columnsL="1"
+						columnsM="1" />
+				</form:layout>
+			</form:Form>
+		</content>
+		<endButton>
+			<Button text="Close" press="onGOSDialogCloseButton" />
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

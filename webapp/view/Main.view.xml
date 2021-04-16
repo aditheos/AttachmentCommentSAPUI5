@@ -1,0 +1,211 @@
+<mvc:View
+	controllerName="intelira.tech.AttachmentCommentDemo.controller.Main"
+	xmlns="sap.uxap"
+    xmlns:layout="sap.ui.layout"
+    xmlns:m="sap.m"
+	xmlns:mvc="sap.ui.core.mvc">
+	<ObjectPageLayout id="ObjectPageLayout"
+		enableLazyLoading="true"
+		useIconTabBar="true"
+		showTitleInHeaderContent="true"
+		upperCaseAnchorBar="false">
+		<headerTitle>
+			<ObjectPageDynamicHeaderTitle>
+				<expandedHeading>
+					<m:Title text="Intelira" wrapping="true"/>
+				</expandedHeading>
+
+				<snappedHeading>
+					<m:FlexBox fitContainer="true" alignItems="Center">
+						<m:Avatar src="./misc/InteliraPhoto.png" class="sapUiTinyMarginEnd" displayShape="Square" displaySize="S" />
+						<layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+							<m:Title text="Intelira" wrapping="true"/>
+							<m:Text text="Digital Earth"/>
+						</layout:VerticalLayout>
+						<layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+							<m:Link text="Go to Intelira" href="https://intelira.tech/"/>
+							<m:Link text="contact@intelira.tech" href="https://intelira.tech/contact/"/>
+						</layout:VerticalLayout>
+					</m:FlexBox>
+				</snappedHeading>
+
+				<expandedContent>
+					<m:Text text="Digital Earth"/>
+				</expandedContent>
+
+				<snappedContent>
+				</snappedContent>
+
+				<actions>
+					<ObjectPageHeaderActionButton 
+						text="GOS Settings" 
+						type="Emphasized" 
+						hideText="false" 
+						icon="sap-icon://action-settings" 
+						press="onGOSSettings"
+						tooltip="Attachment Settings"/>
+				</actions>
+			</ObjectPageDynamicHeaderTitle>
+		</headerTitle>
+
+		<headerContent>
+			<m:FlexBox wrap="Wrap" fitContainer="true" >
+				<m:Avatar src="./misc/InteliraPhoto.png" displayShape="Square" displaySize="L" />
+
+				<layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+					<m:Link text="Go to Intelira" href="https://intelira.tech/"/>
+					<m:Link text="contact@intelira.tech" href="https://intelira.tech/contact/"/>
+				</layout:VerticalLayout>
+
+				<layout:HorizontalLayout class="sapUiSmallMarginBeginEnd">
+			    </layout:HorizontalLayout>
+
+				<layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+					<m:Label text=""/>
+					<m:VBox>
+					</m:VBox>
+				</layout:VerticalLayout>
+
+				<layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+					<m:Label text=""/>
+				</layout:VerticalLayout>
+			</m:FlexBox>
+		</headerContent>
+
+		<sections>
+			<ObjectPageSection titleUppercase="false" id="attachmentOPS" title="Attachment">
+			<subSections>
+				<ObjectPageSubSection id="attachmentSS1" titleUppercase="false">
+					<m:UploadCollection 
+						id="attachmentBlock"
+						instantUpload="true"
+						items="{
+							path: '/AttachmentSet',
+							sorter: {
+								path: 'CreatedAt',
+								descending: true
+							},
+							templateShareable: false
+						}"
+						maximumFilenameLength="{attachmentSettings>/maximumFilenameLength}"
+						maximumFileSize="{attachmentSettings>/maximumFileSize}"
+						multiple="true"
+						sameFilenameAllowed="true"
+						change="onAttachmentChange"
+						fileDeleted="onFileDeleted"
+						filenameLengthExceed="onFilenameLengthExceed"
+						fileRenamed="onFileRenamed"
+						fileSizeExceed="onFileSizeExceed"
+						fileType="{fileTypes>/selected}"
+						selectionChange="onSelectionChange"
+						typeMissmatch="onFileTypeMissmatch"
+						uploadComplete="onFileUploadComplete"
+						beforeUploadStarts="onBeforeFileUploadStarts"
+						uploadTerminated="onFileUploadTerminated"
+						noDataText="{i18n>attachNoDataText}" 
+						noDataDescription="{i18n>attachNoDataDescription}"  
+						showSeparators="{attachmentSettings>/showSeparators}"
+						uploadEnabled="{attachmentSettings>/uploadEnabled}"
+						uploadButtonInvisible="{=!${attachmentSettings>/uploadButtonVisible}}"
+						mode="{attachmentSettings>/mode}"
+						>
+						<m:toolbar>
+							<m:OverflowToolbar id="attachmentOFT">
+								<m:Title id="attachmentTitle" />
+								<m:ToolbarSpacer />
+								<m:Button
+									id="attachmentSettingsButton"
+									text="Settings"
+									icon="sap-icon://action-settings" 
+									tooltip="Attachment Settings"
+									press="onAttachmentSettings"
+									enabled="true"
+									visible="true"
+									type="Transparent" />
+								<m:Button
+									id="deleteNewButton"
+									text="Delete New"
+									icon="sap-icon://clear-all" 
+									tooltip="Delete Attachments added in this session"
+									press="onDeleteAttachmentNew"
+									enabled="true"
+									visible="true"
+									type="Transparent" />
+								<m:Button
+									id="deleteAllButton"
+									text="Delete All"
+									icon="sap-icon://delete" 
+									tooltip="Delete all Attachments"
+									press="onDeleteAttachmentAll"
+									enabled="true"
+									visible="true"
+									type="Transparent" />
+								<m:UploadCollectionToolbarPlaceholder />
+							</m:OverflowToolbar>
+						</m:toolbar>
+					    <m:items>
+					        <m:UploadCollectionItem
+					            documentId="{Id}"
+					        	fileName="{FileName}" 
+					        	mimeType="{MimeType}"
+					        	url="{
+					        		parts:[ 'InstanceID', 'Id' ],
+					        		formatter:'.formatter.attachmentUrl'
+					        	}"
+								enableEdit="{attachmentSettings>/enableEdit}"
+								enableDelete="{attachmentSettings>/enableDelete}"
+								visibleDelete="{attachmentSettings>/visibleDelete}"
+								visibleEdit="{attachmentSettings>/visibleEdit}"
+					        >
+					        	<m:attributes>
+					        		<m:ObjectAttribute 
+					        		    id="attachmentCreatedBy"
+					        			title="{i18n>attachmentCreatedBy}"
+					        			text="{CreatedByName}"/>
+					        		<m:ObjectAttribute 
+					        		    id="attachmentCreatedAt"
+					        			title="{i18n>attachmentCreatedAt}"
+					        			text="{path:'CreatedAt', type:'sap.ui.model.type.DateTime', formatOptions: { style: 'medium'}}"
+					        			/>
+					        	</m:attributes>	
+					        </m:UploadCollectionItem>
+					    </m:items>
+					</m:UploadCollection>
+				</ObjectPageSubSection>
+			</subSections>
+			</ObjectPageSection>
+
+			<ObjectPageSection titleUppercase="false" id="commentOPS" title="Comment">
+				<subSections>
+					<ObjectPageSubSection id="commentSS1" titleUppercase="false">
+						<m:FeedInput
+							post="onPostComment"
+							icon="./misc/InteliraIcon.png"
+							class="sapUiSmallMarginTopBottom" />
+					</ObjectPageSubSection>
+					<ObjectPageSubSection id="commentSS2" titleUppercase="false">
+						<m:List id = "commentBlock"
+							headerText="Comments"
+							items="{
+							path: '/CommentSet',
+							sorter: {
+								path: 'CreatedAt',
+								descending: true
+							},
+							templateShareable: false
+						}"
+						>
+							<m:FeedListItem
+								sender="{CreatedByName}"
+								timestamp="{path:'CreatedAt', type:'sap.ui.model.type.DateTime', formatOptions: { style: 'medium'}}"
+								text="{Note}"
+								actions="{path: 'commentActionSet>/ActionItems', templateShareable: false}">
+								<m:FeedListItemAction text="{commentActionSet>Text}" icon="{commentActionSet>Icon}" key="{commentActionSet>Key}" press="onCommentActionPressed" />
+							</m:FeedListItem>
+						</m:List>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+		</sections>
+	</ObjectPageLayout>
+</mvc:View>

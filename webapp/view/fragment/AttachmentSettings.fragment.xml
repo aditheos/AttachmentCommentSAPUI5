@@ -1,0 +1,83 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Dialog
+		title="Attachment Settings"
+		class="sapUiPopupWithPadding"
+		id="attachmentSettings"
+		horizontalScrolling="false">
+		<content>
+			<form:Form editable="true">
+				<form:formContainers>
+					<form:FormContainer>
+						<form:FormElement label="File types">
+							<MultiComboBox
+								selectionChange="onFileTypeChange"
+								placeholder="Choose the valid file types"
+								items="{fileTypes>/items}"
+								selectedKeys="{fileTypes>/selected}">
+								<core:Item key="{fileTypes>}" text="{fileTypes>}" />
+							</MultiComboBox>
+						</form:FormElement>
+						<form:FormElement label="Upload button visible">
+							<Switch id="uploadButtonVisibleSwitch" state="{attachmentSettings>/uploadButtonVisible}" />
+						</form:FormElement>
+						<form:FormElement label="Upload enabled">
+							<Switch id="uploadEnabledSwitch" state="{attachmentSettings>/uploadEnabled}" />
+						</form:FormElement>
+						<form:FormElement label="Edit buttons visible">
+							<Switch id="editButtonsVisibleSwitch" state="{attachmentSettings>/visibleEdit}" />
+						</form:FormElement>
+						<form:FormElement label="Edit buttons enabled">
+							<Switch id="editButtonsEnabledSwitch" state="{attachmentSettings>/enableEdit}" />
+						</form:FormElement>
+						<form:FormElement label="Delete buttons visible">
+							<Switch id="deleteButtonsVisibleSwitch" state="{attachmentSettings>/visibleDelete}" />
+						</form:FormElement>
+						<form:FormElement label="Delete buttons enabled">
+							<Switch id="deleteButtonsEnabledSwitch" state="{attachmentSettings>/enableDelete}" />
+						</form:FormElement>
+						<form:FormElement label="List Select Mode">
+							<Select
+								id="listModeSelectSelect"
+								items="{attachmentSettings>/listModeItems}"
+								selectedKey="{attachmentSettings>/mode}"
+								width="150px"
+								change="onModeChange">
+								<core:Item key="{attachmentSettings>key}" text="{attachmentSettings>text}" />
+							</Select>
+						</form:FormElement>
+						<form:FormElement label="Show list separators">
+							<Select
+								id="listSeparatorsSelect"
+								items="{attachmentSettings>/listSeparatorItems}"
+								width="150px"
+								selectedKey="{attachmentSettings>/showSeparators}">
+								<core:Item key="{attachmentSettings>}" text="{attachmentSettings>}" />
+							</Select>
+						</form:FormElement>
+					</form:FormContainer>
+				</form:formContainers>
+				<form:layout>
+					<form:ResponsiveGridLayout
+						labelSpanXL="3"
+						labelSpanL="3"
+						labelSpanM="4"
+						labelSpanS="12"
+						adjustLabelSpan="false"
+						emptySpanXL="0"
+						emptySpanL="0"
+						emptySpanM="0"
+						emptySpanS="0"
+						columnsXL="1"
+						columnsL="1"
+						columnsM="1" />
+				</form:layout>
+			</form:Form>
+		</content>
+		<endButton>
+			<Button text="Close" press="onAttachmentDialogCloseButton" />
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>
