@@ -1,3 +1,4 @@
+![Image](/images/AttachmentCommentDemo.jpg)
 # AttachmentCommentSAPUI5
 SAP Attachments and Comments Demo App ( SAPUI5 )
 
@@ -11,5 +12,8 @@ User interface is build using **SAPUI5** which integrates with backend using **O
 
 **SAP Web IDE** is used to develop this application
 
+# OData Service
+[Link to OData Service Repo ](https://github.com/intelira/AttachmentCommentODataService)
+
 # Installation
-[Detailed info on App and Installation](https://intelira.tech/)
+[Detailed info on App and Installation](https://intelira.tech/2021/04/17/sapui5-app-and-odata-service-for-uploading-attachments-posting-comments-sap-open-source/)
